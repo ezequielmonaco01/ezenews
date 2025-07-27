@@ -3,7 +3,7 @@ import { Text, StyleSheet, SafeAreaView } from 'react-native'
 const Header = () => {
   return (
     <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>EzeNews Times</Text>
+        <Text style={styles.title}>S' News</Text>
     </SafeAreaView>
   )
 }
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
-    paddingBottom: 20
+    paddingBottom: 15
   },
 });
 

@@ -1,18 +1,13 @@
-import { useEffect, useState } from 'react'
 import { View, Text, FlatList } from 'react-native'
-import { getTopHeadlinesNews } from '../../api/services'
 import { New } from '../../interfaces/news'
 import { NewsCard } from '../../components/NewsCard'
 import globalStyles from '../../styles/globalStyles'
+import { NewsStore } from '../../store/NewsStore'
 
 const Home = () => {
 
-  const [news, setNews] = useState<New[]>([])
+  const { news } = NewsStore()
 
-  useEffect(() => {
-    getTopHeadlinesNews().then(res => setNews(res.articles))
-  }, [])
-  
   return (
     <View style={globalStyles.container}>
       <Text style={globalStyles.title}>Noticias</Text>

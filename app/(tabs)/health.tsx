@@ -1,23 +1,17 @@
-import { useCallback, useEffect, useState } from 'react'
-import { View, Text, FlatList, TextInput } from 'react-native'
-import { getEveryNewsFromAQ } from '../../api/services'
+import { View, Text, FlatList } from 'react-native'
 import { New } from '../../interfaces/news'
-import globalStyles from '../../styles/globalStyles'
 import { NewsCard } from '../../components/NewsCard'
+import { NewsStore } from '../../store/NewsStore'
+import globalStyles from '../../styles/globalStyles'
 
 const Health = () => {
+  const { healthNews } = NewsStore()
 
-  const [news, setNews] = useState<New[]>([])
-
-  useEffect(() => {
-    getEveryNewsFromAQ('health').then(res => setNews(res.articles))
-  }, [])
-  
   return (
     <View style={globalStyles.container}>
       <Text style={globalStyles.title}>Salud</Text>
       <FlatList
-        data={news}
+        data={healthNews}
         renderItem={({ item }: { item: New }) => <NewsCard new={item} />}
         keyExtractor={(item, index) => `${item.url || index}-${item.publishedAt || index}`}
         showsVerticalScrollIndicator={false}

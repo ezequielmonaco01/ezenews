@@ -1,8 +1,32 @@
 import { Stack } from 'expo-router';
 import StatusBar from '../components/StatusBar';
-import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+import { Alert } from 'react-native';
+import { NewsStore } from '../store/NewsStore';
 
 export default function Layout() {
+
+  const { getTopHeadlines, getEveryNewsFromAQ } = NewsStore()
+
+  const getAllNews = async () => {
+    try {
+      const promise = ([
+        getTopHeadlines(),
+        getEveryNewsFromAQ('health'),
+        getEveryNewsFromAQ('politics'),
+        getEveryNewsFromAQ('technology'),
+        getEveryNewsFromAQ('economy'),
+      ])
+      await Promise.all(promise)
+    } catch (error) {
+      Alert.alert('Oops!', 'Hubo un error al obtener las noticias.')
+    }
+  }
+
+  useEffect(() => {
+    getAllNews()
+  }, [])
+
   return (
     <>
       <StatusBar />
