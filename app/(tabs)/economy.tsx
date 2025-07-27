@@ -1,23 +1,13 @@
-import { View, Text, FlatList } from 'react-native'
-import { NewsCard } from '../../components/NewsCard'
-import globalStyles from '../../styles/globalStyles'
-import { NewsStore } from '../../store/NewsStore'
-import { New } from '../../interfaces/news'
+
+import { NewsStore } from "../../store/NewsStore";
+import { NewsLayout } from "../../components/NewsLayout";
 
 const Economy = () => {
-  const { economyNews } = NewsStore()
+  const { economyNews, isLoading } = NewsStore();
 
   return (
-    <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>Economía</Text>
-      <FlatList
-        data={economyNews}
-        renderItem={({ item }: { item: New }) => <NewsCard new={item} />}
-        keyExtractor={(item, index) => `${item.url || index}-${item.publishedAt || index}`}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
-  )
-}
+    <NewsLayout isLoading={isLoading} news={economyNews} title="Economía" />
+  );
+};
 
-export default Economy
+export default Economy;

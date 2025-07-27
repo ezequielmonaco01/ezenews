@@ -1,24 +1,12 @@
-import { View, Text, FlatList } from 'react-native'
-import { New } from '../../interfaces/news'
-import { NewsCard } from '../../components/NewsCard'
-import globalStyles from '../../styles/globalStyles'
-import { NewsStore } from '../../store/NewsStore'
+
+import { NewsStore } from "../../store/NewsStore";
+import { NewsLayout } from "../../components/NewsLayout";
 
 const Home = () => {
+  const { news, isLoading } = NewsStore();
+  
+  return <NewsLayout news={news} isLoading={isLoading} title="Noticias" />;
+};
 
-  const { news } = NewsStore()
+export default Home;
 
-  return (
-    <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>Noticias</Text>
-      <FlatList
-        data={news}
-        renderItem={({ item }: { item: New }) => <NewsCard new={item} />}
-        keyExtractor={(item, index) => `${item.url || index}-${item.publishedAt || index}`}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
-  )
-}
-
-export default Home
