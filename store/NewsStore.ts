@@ -10,8 +10,8 @@ interface NewsState {
   economyNews: New[];
   isLoading: boolean;
   setNews: (news: New[]) => void;
-  getTopHeadlines: () => Promise<void>;
-  getEveryNewsFromAQ: (q: string) => Promise<void>;
+  getTopHeadlines: (params?: Record<string, string>) => Promise<void>;
+  getEveryNewsFromAQ: (params?: Record<string, string>) => Promise<void>;
 }
 
 export const NewsStore = create<NewsState>((set) => ({
@@ -22,19 +22,19 @@ export const NewsStore = create<NewsState>((set) => ({
   economyNews: [],
   isLoading: false,
   setNews: (news: New[]) => set({ news }),
-  getTopHeadlines: async () => {
+  getTopHeadlines: async (params?: Record<string, string>) => {
     set({ isLoading: true });
-    const res = await getTopHeadlinesNews();
+    const res = await getTopHeadlinesNews(params);
     set({ news: res.articles, isLoading: false });
   },
-  getEveryNewsFromAQ: async (q: string) => {
+  getEveryNewsFromAQ: async (params?: Record<string, string>) => {
     set({ isLoading: true });
-    const res = await getEveryNewsFromAQ(q);
-    if (q === "health") {
+    const res = await getEveryNewsFromAQ(params);
+    if (params?.q === "health") {
       set({ healthNews: res.articles, isLoading: false });
-    } else if (q === "politics") {
+    } else if (params?.q === "politics") {
       set({ polityNews: res.articles, isLoading: false });
-    } else if (q === "technology") {
+    } else if (params?.q === "technology") {
       set({ techNews: res.articles, isLoading: false });
     } else {
       set({ economyNews: res.articles, isLoading: false });

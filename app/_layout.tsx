@@ -10,11 +10,11 @@ export default function Layout() {
   const getAllNews = async () => {
     try {
       const promise = [
-        getTopHeadlines(),
-        // getEveryNewsFromAQ('health'),
-        // getEveryNewsFromAQ('politics'),
-        // getEveryNewsFromAQ('technology'),
-        // getEveryNewsFromAQ('economy'),
+        getTopHeadlines({ country: "us" }),
+        // getEveryNewsFromAQ({ q: "health" }),
+        // getEveryNewsFromAQ({ q: "politics" }),
+        // getEveryNewsFromAQ({ q: "technology" }),
+        // getEveryNewsFromAQ({ q: "economy" }),
       ];
       await Promise.all(promise);
     } catch (error) {
