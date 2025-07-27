@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native'
+import { NewsStore } from "../../store/NewsStore";
+import { NewsLayout } from "../../components/NewsLayout";
 
 const Polity = () => {
-  return (
-    <View>
-      <Text>Polity</Text>
-    </View>
-  )
-}
+  const { polityNews, isLoading } = NewsStore();
 
-export default Polity
+  return (
+    <NewsLayout isLoading={isLoading} news={polityNews} title="Política" />
+  );
+};
+
+export default Polity;
