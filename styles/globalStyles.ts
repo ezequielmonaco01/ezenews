@@ -10,6 +10,15 @@ const globalStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
+    },
+    disabledText: {
+        color: 'gray',
+        fontSize: 16,
+    },
+    disabledContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

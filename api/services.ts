@@ -1,4 +1,3 @@
-import { Alert } from "react-native";
 import { apiManager } from "./apiManager";
 
 export const getTopHeadlinesNews = async () => {
@@ -6,15 +5,15 @@ export const getTopHeadlinesNews = async () => {
         const response = await apiManager().get(`top-headlines?country=us`)
         return response.data
     } catch {
-        Alert.alert('Oops!', 'Hubo un error al obtener las noticias.')
+        console.log('Error al obtener las noticias')
     }
 }
 
-export const getEveryNewsFromAQ = async (q?: string) => {
+export const getEveryNewsFromAQ = async (q: string) => {
     try {
         const response = await apiManager().get(`everything?q=${q}`)
         return response.data
     } catch {
-        Alert.alert('Oops!', 'Hubo un error al obtener las noticias.')
+        console.log('Error al obtener las noticias')
     }
 }
